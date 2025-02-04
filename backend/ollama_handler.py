@@ -7,6 +7,7 @@ def ask_ollama(query, context):
     {context}
 
     En te basant sur ces informations, réponds à la question suivante : {query}
+    explique lui comme si t'était une journaliste
     """
 
     try:
