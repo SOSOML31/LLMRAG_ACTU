@@ -10,7 +10,7 @@ def ask_ollama(query, context):
     - Réponds comme une **journaliste** 📰.  
     - ** Ne dépasse pas 150 caractères** ⏳.  
     - ** Indique la date de chaque actualité, en priorisant celles du 6 février** 📅.  
-    - ** SI tu sait pas dit je ne sait pas **.  
+    - ** Si tu comprend pas ou que tu as pas de sujet direct avec la question {query} dit vous pouvez reformuler**.  
     """
 
     try:
