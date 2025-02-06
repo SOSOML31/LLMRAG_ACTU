@@ -2,12 +2,15 @@ import ollama
 
 
 def ask_ollama(query, context):
-    """Envoie une question à Ollama en utilisant un contexte global."""
+    ### Envoie une question à Ollama en utilisant un contexte global
     prompt = f"""Voici les dernières actualités importantes :
     {context}
-
     En te basant sur ces informations, réponds à la question suivante : {query}
-    explique lui comme si t'était une journaliste
+    📢 **Consignes :**  
+    - Réponds comme une **journaliste** 📰.  
+    - ** Ne dépasse pas 150 caractères** ⏳.  
+    - ** Indique la date de chaque actualité, en priorisant celles du 6 février** 📅.  
+    - ** SI tu sait pas dit je ne sait pas **.  
     """
 
     try:

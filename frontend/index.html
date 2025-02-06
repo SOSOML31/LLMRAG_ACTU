@@ -8,12 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Recherchez des Actualités</h1><br/>
+        <h1>Recherchez des Actualités</h1>
+
+        <!-- Sélection de mode -->
+        <label for="mode">Mode de recherche :</label>
+        <select id="mode">
+            <option value="rag">Avec RAG (Recherche Contextuelle)</option>
+            <option value="llm">Sans RAG (LLM Direct)</option>
+        </select>
+
+        <br/><br/>
         <input type="text" id="query" placeholder="Entrez votre recherche...">
         <button onclick="askQuestion()">Rechercher</button>
+
+        <!-- Barre de chargement -->
+        <div id="loading" class="loading" style="display: none;">⏳ Recherche en cours...</div>
+
         <div class="response" id="response"></div>
         <ul id="sources"></ul>
-
     </div>
 
     <script src="script.js"></script>

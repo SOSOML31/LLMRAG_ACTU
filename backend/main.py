@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import SessionLocal, Article
 from ollama_handler import ask_ollama
 from pydantic import BaseModel
+import ollama
 
 app = FastAPI()
 
@@ -42,6 +43,20 @@ def ask(request: QueryRequest):
     return {"response": response, "sources": sources}
 
 
+@app.post("/llm")
+def direct_llm_query(request: QueryRequest):
+    """Appelle Ollama avec un modèle au choix"""
+    query = request.query
+    model = request.model if hasattr(request, "model") else "mistral"  # Mistral par défaut
+    print(f"🧠 Requête LLM reçue : {query} | Modèle : {model}")
+
+    # 🎯 Création du prompt simple
+    prompt = f"Réponds de manière précise et détaillée à cette question : {query}"
+
+    # 🤖 Envoi au LLM Ollama avec le modèle sélectionné
+    response = ollama.chat(model=model, messages=[{"role": "user", "content": prompt}])
+
+    return {"response": response["message"]["content"]}
 if __name__ == "__main__":
     import uvicorn
 
