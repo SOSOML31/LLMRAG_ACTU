@@ -6,8 +6,6 @@ from pydantic import BaseModel
 import ollama
 
 app = FastAPI()
-
-# Configuration CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -16,10 +14,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 class QueryRequest(BaseModel):
     query: str
-
 
 @app.post("/ask")
 def ask(request: QueryRequest):
@@ -42,7 +38,6 @@ def ask(request: QueryRequest):
 
     return {"response": response, "sources": sources}
 
-
 @app.post("/llm")
 def direct_llm_query(request: QueryRequest):
     """Appelle Ollama avec un modèle au choix"""
@@ -57,7 +52,7 @@ def direct_llm_query(request: QueryRequest):
     response = ollama.chat(model=model, messages=[{"role": "user", "content": prompt}])
 
     return {"response": response["message"]["content"]}
+
 if __name__ == "__main__":
     import uvicorn
-
     uvicorn.run(app, host="0.0.0.0", port=5000)
