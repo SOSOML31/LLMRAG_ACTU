@@ -1,5 +1,4 @@
 import ollama
-
 def ask_ollama(query, context):
     ### Envoie une question à Ollama en utilisant un contexte global
     prompt = f"""Voici les dernières actualités importantes :

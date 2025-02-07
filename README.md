@@ -1,6 +1,6 @@
-# LLM + RAG
-## Objectif 
+# Une IA journaliste vous répond sur des sujet d'Actualité
 
-* Recherche des Actualité
-* Description temps réél 
-* 
+## Objectif 
+LLM + RAG 
+
+![Texte alternatif](RECHERCHE ACTU.png)

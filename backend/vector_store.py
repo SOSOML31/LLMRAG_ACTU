@@ -1,6 +1,6 @@
-import chromadb  # Importer ChromaDB pour la gestion des index vectoriels
-from database import SessionLocal, Article  # Importer la connexion PostgreSQL et le modèle Article
-from langchain_community.embeddings import HuggingFaceEmbeddings  # Importer le modèle d'embedding de LangChain
+import chromadb
+from database import SessionLocal, Article
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
@@ -11,19 +11,19 @@ from langchain_community.embeddings import HuggingFaceEmbeddings  # Importer le 
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
-# 1️⃣ **Initialisation de ChromaDB**
+# **Initialisation de ChromaDB**
 # ChromaDB est utilisé comme base de données vectorielle pour stocker et rechercher les articles sous forme d'embeddings.
 chroma_client = chromadb.PersistentClient(path="chroma_db")  # Créer une base persistante pour stocker les embeddings des articles
 
-# 2️⃣ **Définition du modèle d'embedding**
+# **Définition du modèle d'embedding**
 # Ce modèle convertit le texte en vecteurs pour permettre des recherches sémantiques efficaces.
 embedding_function = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-# 3️⃣ **Création d'une collection ChromaDB**
+# **Création d'une collection ChromaDB**
 # Une collection dans ChromaDB est similaire à une table en base de données. Elle contiendra les articles sous forme vectorisée.
 collection = chroma_client.get_or_create_collection(name="articles")
 
-# 4️⃣ **Fonction pour indexer les articles**
+# **Fonction pour indexer les articles**
 def index_articles():
     """
     - Récupère les articles stockés dans PostgreSQL.
@@ -45,9 +45,8 @@ def index_articles():
             metadatas=[{"title": article.title, "url": article.url}]  # Métadonnées (titre et lien)
         )
 
-    session.close()  # Fermer la connexion à la base de données PostgreSQL
+    session.close()
     print("✅ Articles indexés dans ChromaDB.")  # Message de confirmation
 
-# 5️⃣ **Exécution du script**
 if __name__ == "__main__":
-    index_articles()  # Lancer l'indexation si le script est exécuté directement
+    index_articles()

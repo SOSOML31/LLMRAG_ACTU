@@ -10,8 +10,8 @@ from datetime import datetime  # Gestion des dates et heures
 ##############################################################################################################################################################################
 ##############################################################################################################################################################################
 
-# 📌 1️⃣ Configuration de la connexion à PostgreSQL
-DB_URL = "postgresql://postgres:931752@localhost:5432/actullm"  # ⚠️ Remplace par tes propres identifiants
+
+DB_URL = "postgresql://postgres:931752@localhost:5432/actullm"
 engine = create_engine(DB_URL)  # Création du moteur de connexion SQLAlchemy
 # 📌 2️⃣ Création de la session pour interagir avec la base de données
 SessionLocal = sessionmaker(bind=engine)  # Génère des sessions pour interagir avec la base
